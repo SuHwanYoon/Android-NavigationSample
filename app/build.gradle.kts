@@ -50,6 +50,14 @@ android {
 }
 
 dependencies {
+    val nav_version = "2.7.4"
+
+    // Jetpack Compose integration
+    // Navigation Compose
+    // Navigation Compose 라이브러리를 사용하여 Jetpack Compose와 Navigation을 통합
+    // Navigation Compose 라이브러리는 Jetpack Compose와 Navigation을 통합하는 기능을 제공
+    // Navigation Compose 라이브러리를 사용하면 Jetpack Compose에서 Navigation을 쉽게 사용할 수 있음
+    implementation("androidx.navigation:navigation-compose:$nav_version")
     //오류버전
 //    implementation("androidx.core:core-ktx:1.12.0")
     //정상버전
