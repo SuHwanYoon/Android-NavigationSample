@@ -15,7 +15,9 @@ import androidx.compose.ui.unit.sp
 import yoon.tutorials.navigationsample.ui.theme.NavigationSampleTheme
 
 @Composable
-fun SecondScreen(navigateToFirstScreen: () -> Unit) {
+// name - FlristScreen화면에서 입력하는 name
+// navigateToFirstScreen - FirstScreen으로 이동하는 함수
+fun SecondScreen(name: String,navigateToFirstScreen: (name: String) -> Unit) {
 
     // Column을 사용하여 화면을 구성
     // Column은 세로로 배치되는 요소들을 가질 수 있는 Layout
@@ -32,12 +34,13 @@ fun SecondScreen(navigateToFirstScreen: () -> Unit) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(text = "This is the second screen", fontSize = 24.sp)
-        Text(text = "Welcome!", fontSize = 24.sp)
+        // Text를 통해 name을 화면에 표시
+        Text(text = "Welcome ${name}!", fontSize = 24.sp)
         // Button을 클릭하면 SecondScreen으로 이동
         // Button은 클릭 이벤트를 처리하는 onClick을 가짐
         Button(onClick = {
             // navigationToSecondScreen을 호출하여 SecondScreen으로 이동
-            navigateToFirstScreen()
+            navigateToFirstScreen(name)
         }) {
             // Button의 Text를 설정
             // Text는 버튼에 표시되는 텍스트를 설정
@@ -50,6 +53,6 @@ fun SecondScreen(navigateToFirstScreen: () -> Unit) {
 @Composable
 fun SecondScreenPreview() {
     NavigationSampleTheme {
-        SecondScreen(navigateToFirstScreen = {})
+        SecondScreen("yoon",navigateToFirstScreen = {})
     }
 }

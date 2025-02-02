@@ -19,9 +19,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import yoon.tutorials.navigationsample.ui.theme.NavigationSampleTheme
 
-// Unit객체 반환하는 람다함수를 매개변수로 가지는 FirstScreen 함수
 @Composable
-fun FirstScreen(navigateToSecondScreen: () -> Unit) {
+// Unit객체 반환하는 람다함수를 매개변수로 가지는 FirstScreen 함수
+// navigateToSecondScreen - SecondScreen으로 이동하는 함수
+// FirstScreen은 TextField에 입력된 name 값을 저장하고, Button을 클릭하면 SecondScreen으로 이동
+fun FirstScreen(navigateToSecondScreen: (name: String) -> Unit) {
     val name = remember{
         mutableStateOf("")
     }
@@ -47,10 +49,11 @@ fun FirstScreen(navigateToSecondScreen: () -> Unit) {
             name.value = it
         })
         // Button을 클릭하면 SecondScreen으로 이동
-        // Button은 클릭 이벤트를 처리하는 onClick을 가짐
+        // onClick 이벤트는 SecondScreen으로 이동하는 navigateToSecondScreen함수를 호출
         Button(onClick = {
             // navigationToSecondScreen을 호출하여 SecondScreen으로 이동
-            navigateToSecondScreen()
+            // name.value에 입력된 값을 전달
+            navigateToSecondScreen(name.value)
         }) {
             // Button의 Text를 설정
             // Text는 버튼에 표시되는 텍스트를 설정

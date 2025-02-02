@@ -40,19 +40,33 @@ fun MyApp() {
     // NavHost는 startDestination을 설정하여 시작 화면을 지정
     // NavHost는 rememberNavController를 사용하여 NavController를 생성
     NavHost(navController = navController, startDestination = "firstscreen") {
+        // route 속성값은 구성한 @Composable 함수를 지정
+        // route 속성값의 이름은 개발자 임의지정
+
+        // FirstScreen함수를 조작하는 composable함수
         composable(route = "firstscreen") {
-            // FirstScreen을 호출하여 화면을 구성
+            // 만들어둔 FirstScreen을 호출
             // FirstScreen은 navigateToSecondScreen을 매개변수로 가짐
+            // FirstScreen은 화면에 name 값을 입력하고 SecondScreen으로 전달하고 이동
             FirstScreen(navigateToSecondScreen = {
                 // navigate를 사용하여 화면 이동
                 // navigate는 NavController를 사용하여 화면 간 이동을 처리
                 // navigate의 인자로 이동할 화면의 route를 전달
                 // route는 composable에 설정한 route를 전달
-                navController.navigate("secondscreen")
+                // secondscreen에 name:String 변수를 참조하여 전달
+                name ->
+                navController.navigate("secondscreen/$name")
             })
         }
-        composable(route = "secondscreen") {
-            SecondScreen( navigateToFirstScreen = {
+        // SecondScreen함수를 조작하는 composable함수
+        // firstscreen에서 입력한 name을 {name}를 통해 받아옴
+        composable(route = "secondscreen/{name}") {
+            // arguments를 사용하여 route로 전달된 인자를 받아옴
+            // getString을 사용하여 String 타입으로 변환
+            // name이 없을 경우 "no name"으로 설정
+            val name = it.arguments?.getString("name") ?: "no name"
+            // SecondScreen은 firstscreen에서 입력한 name을 받아오고 화면에 표시
+            SecondScreen( name, navigateToFirstScreen = {
                 navController.navigate("firstscreen")
             })
         }
