@@ -17,7 +17,7 @@ import yoon.tutorials.navigationsample.ui.theme.NavigationSampleTheme
 @Composable
 // name - FlristScreen화면에서 입력하는 name
 // navigateToFirstScreen - FirstScreen으로 이동하는 함수
-fun SecondScreen(name: String,navigateToFirstScreen: (name: String) -> Unit) {
+fun SecondScreen(name: String,navigateToFirstScreen: (name:String) -> Unit) {
 
     // Column을 사용하여 화면을 구성
     // Column은 세로로 배치되는 요소들을 가질 수 있는 Layout

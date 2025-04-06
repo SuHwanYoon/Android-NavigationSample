@@ -63,7 +63,7 @@ fun MyApp() {
         composable(route = "secondscreen/{name}") {
             // arguments를 사용하여 route로 전달된 인자를 받아옴
             // getString을 사용하여 String 타입으로 변환
-            // name이 없을 경우 "no name"으로 설정
+            // name값이 NULL일 경우 "no name"으로 설정해서 전달
             val name = it.arguments?.getString("name") ?: "no name"
             // SecondScreen은 firstscreen에서 입력한 name을 받아오고 화면에 표시
             SecondScreen( name, navigateToFirstScreen = {
